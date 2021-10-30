@@ -3,11 +3,11 @@
 
 using namespace std;
 
-typedef struct{
-    double** m;
-    int nLinhas;
-    int nColunas;
-}Matriz;
+typedef struct {
+  double **m;
+  int nLinhas;
+  int nColunas;
+} Matriz;
 
 void inicializaMatriz(Matriz &X, int ls, int cs, const double elem);
 

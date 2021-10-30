@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.tpp": "cpp",
+        "*.tcc": "cpp",
+        "string": "cpp",
+        "istream": "cpp",
+        "iosfwd": "cpp"
+    },
+    "terminal.integrated.shell.windows": "cmd.exe"
+}
