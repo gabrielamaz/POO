@@ -7,20 +7,10 @@
 
 using namespace std;
 
-string leLinha()
-{
-  ifstream arquivo("arquivo.txt");
-  string linha = "";
-  if (arquivo.is_open()) {
-    getline(arquivo, linha);
-  }
-  arquivo.close();
-  return linha;
-}
+int numeroEspacos = 0;
 
-int contaEspacos(string linha)
+void contaEspacos(string linha)
 {
-  int numeroEspacos = 0;
   for (auto &iter : linha)
   {
     if (iter == ' ')
@@ -28,7 +18,17 @@ int contaEspacos(string linha)
       numeroEspacos++;
     }
   }
-  return numeroEspacos;
+}
+
+void leLinha()
+{
+  ifstream arquivo("arquivo.txt");
+  string linha = "";
+  while (getline(arquivo, linha))
+  {
+    contaEspacos(linha);
+  }
+  arquivo.close();
 }
 
 vector <int> leVetor() {
@@ -44,8 +44,6 @@ vector <int> leVetor() {
 
 int main()
 {
-  string linha = leLinha();
-  int numeroEspacos = contaEspacos(linha);
+  leLinha();
   cout << numeroEspacos << endl;
-  vector <int> numeros = leVetor();
 }
