@@ -10,7 +10,7 @@ Matrix::Matrix() {
 
 // contrutor parametrico 1 - cria uma matriz com nRows  = rows, nCols = cols e 
 // com todos os elementos iguais a elem (double)
-Matrix::Matrix(int rows, int cols, double elem = 0.0){
+Matrix::Matrix(int rows, int cols, double elem){
     this->nRows = rows;
     this->nCols = cols;
 
