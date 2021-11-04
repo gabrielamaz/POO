@@ -1,4 +1,4 @@
-#include "../include/Matriz.hpp"
+#include "Matriz.hpp"
 
 #include <algorithm>
 #include <cstdlib>
@@ -19,11 +19,8 @@ void inicializaMatriz(Matriz &X, int ls, int cs, const double elem) {
 }
 
 void apagaMatriz(Matriz &X) {
-  if (X.m != NULL) {
-    for (int i = 0; i < X.nLinhas; i++) delete[] X.m[i];
-    delete[] X.m;
-    X.m = NULL;
-  }
+  for (int i = 0; i < X.nLinhas; i++) delete[] X.m[i];
+  delete[] X.m;
 }
 
 Matriz transposta(Matriz &X) {
@@ -47,10 +44,10 @@ Matriz transposta(Matriz &X) {
 Matriz multiplica_por_cte(Matriz &X, double k) {
   Matriz Y;
   inicializaMatriz(Y, X.nLinhas, X.nColunas, 0);
-  
+
   for (int i = 0; i < X.nLinhas; i++) {
     for (int j = 0; j < X.nColunas; j++) {
-      Y.m[i][j] *= X.m[i][j]*k;
+      Y.m[i][j] *= X.m[i][j] * k;
     }
   }
   return Y;

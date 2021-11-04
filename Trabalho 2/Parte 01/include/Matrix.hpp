@@ -14,7 +14,7 @@ class Matrix {
 
         // Construtores
         Matrix();                           
-        Matrix(int rows, int cols, double elem);
+        Matrix(int rows, int cols, double elem = 0.0);
         // destrutor
         ~Matrix();
     
