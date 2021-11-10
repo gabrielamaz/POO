@@ -13,24 +13,24 @@ Tempo::Tempo(int dia, int hora, int min, int seg) {
 }
 
 void Tempo::verificaSegundos() {
-  if (this->seg >= 60){
-      this->seg -= 60;
+  if (this->seg >= 59){
+      this->seg -= 59;
       this->incrementaMinuto();
   }
   verificaMinutos();
 }
 
 void Tempo::verificaMinutos() {
-  if (this->min >= 60){
-      this->min -= 60;
+  if (this->min >= 59){
+      this->min -= 59;
       this->incrementaHora();
   }
   verificaHoras();
 }
 
 void Tempo::verificaHoras() {
-  if (this->hora >= 24){
-      this->hora -= 24;
+  if (this->hora >= 23){
+      this->hora -= 23;
       this->incrementaDia();
   }
 }
