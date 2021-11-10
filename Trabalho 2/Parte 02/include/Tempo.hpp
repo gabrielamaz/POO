@@ -15,6 +15,8 @@ class Tempo {
  public:
   Tempo(int dia = 0, int hora = 0, int min = 0, int seg = 0);
 
+  ~Tempo() {}
+
   int getSeg() { return seg; }
 
   int getMin() { return min; }
@@ -31,14 +33,19 @@ class Tempo {
 
   void setDia(int dia) { this->dia = dia; }
 
-  void verificaConsistencia();
+  void incrementaSegundo() { this->seg++; verificaSegundos(); }
+
+  void incrementaMinuto() { this->min++; verificaMinutos(); }
+
+  void incrementaHora() { this->hora++; verificaHoras(); }
+
+  void incrementaDia() { this->dia++; }
+
+  void verificaConsistencia() { verificaSegundos(); verificaMinutos(); verificaHoras(); }
+
   Tempo somaTempo(Tempo t1);
-  void leituraArquivo();
-  void escritaArquivo();
-  void incrementaSegundo();
-  void incrementaMinuto();
-  void incrementaHora();
-  void incrementaDia();
+  void leitura();
+  void escrita();
 };
 
 #endif
