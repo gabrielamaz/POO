@@ -17,17 +17,16 @@ Matrix::Matrix(int rows, int cols, const double &value){
     this->nRows = rows;
     this->nCols = cols;
     this->m = new double *[nRows];
-    for (int i = 0; i < nRows; i++) m[i] = new double[nCols];
-        for (int i = 0; i < nCols; i++) {
-            for (int j = 0; j < nCols; j++) {
+    for (int i = 0; i <= nRows; i++) m[i] = new double[nCols];
+        for (int i = 0; i <= nCols; i++) {
+            for (int j = 0; j <= nCols; j++) {
                 m[i][j] = value;
             }
         }
 }
 
 // contrutor parametrico 2 - cria uma matriz com os dados fornecidos pelo arquivo texto myFile.
-Matrix::Matrix(fstream &myFile) {
-    myFile.open("myFile");
+Matrix::Matrix(ifstream &myFile) {
     if(!myFile) {
       cout << "Error: nao foi possivel abrir o arquivo" << endl;
       exit(1);
@@ -48,8 +47,8 @@ Matrix::Matrix(fstream &myFile) {
 Matrix::Matrix(const Matrix &that){
     nRows = that.nRows;
     nCols = that.nCols;
-    for(int i = 0; i < this->nRows; i++){
-        for(int j = 0; j < this->nCols; j++){
+    for(int i = 0; i <= this->nRows; i++){
+        for(int j = 0; j <= this->nCols; j++){
             that.m[i][j] = m[i][j];
         }
     }
@@ -90,8 +89,8 @@ void Matrix::print() const {
 
 // faz com que a matriz torne-se uma matriz identidade
 void Matrix::unit(){
-    for(int i = 0; i < this->nRows; i++){
-        for(int j = 0; j < this->nCols; j++){
+    for(int i = 0; i <= this->nRows; i++){
+        for(int j = 0; j <= this->nCols; j++){
             if(i != j)this->m[i][j] = 0;
             else this->m[i][j] = 1;
         }
@@ -100,8 +99,8 @@ void Matrix::unit(){
 
 // faz com que a matriz torne-se uma matriz nula
 void Matrix::zeros(){
-    for(int i = 0; i < this->nRows; i++){
-        for(int j = 0; j < this->nCols; j++){
+    for(int i = 0; i <= this->nRows; i++){
+        for(int j = 0; j <= this->nCols; j++){
             this->m[i][j] = 0;
         }
     }
@@ -109,8 +108,8 @@ void Matrix::zeros(){
 
 // faz com que a matriz torne-se uma matriz cujos elementos sao iguaia a 1
 void Matrix::ones(){
-    for(int i = 0; i < this->nRows; i++){
-        for(int j = 0; j < this->nCols; j++){
+    for(int i = 0; i <= this->nRows; i++){
+        for(int j = 0; j <= this->nCols; j++){
             this->m[i][j] = 1;
         }
     }
