@@ -26,7 +26,7 @@ Matrix::Matrix(int rows, int cols, const double &value){
 }
 
 // contrutor parametrico 2 - cria uma matriz com os dados fornecidos pelo arquivo texto myFile.
-Matrix::Matrix(fstream &myFile) {
+Matrix::Matrix(ifstream &myFile) {
     myFile.open("myFile");
     if(!myFile) {
       cout << "Error: nao foi possivel abrir o arquivo" << endl;
