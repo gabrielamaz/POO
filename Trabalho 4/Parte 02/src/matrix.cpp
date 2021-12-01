@@ -27,13 +27,20 @@ Matrix::Matrix(int rows, int cols, const double &value){
 
 // contrutor parametrico 2 - cria uma matriz com os dados fornecidos pelo arquivo texto myFile.
 Matrix::Matrix(ifstream &myFile) {
-    myFile.open("myFile");
-    if(!myFile) {
+    if(!myFile.is_open()) {
       cout << "Error: nao foi possivel abrir o arquivo" << endl;
       exit(1);
     }
     myFile >> nRows;
-    nCols = nRows;
+    myFile >> nCols;
+    
+    this->m = new double *[nRows];
+    for (int i = 0; i < nRows; i++) m[i] = new double[nCols];
+        for (int i = 0; i < nCols; i++) {
+            for (int j = 0; j < nCols; j++) {
+                m[i][j] = value;
+            }
+        }
     while ( !myFile.eof() ) {
         for(int i = 0; i < this->nRows; i++){
             for(int j = 0; j < this->nCols; j++){
