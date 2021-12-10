@@ -48,8 +48,11 @@ Matrix::Matrix(ifstream &myFile) {
 
 // contrutor de copia
 Matrix::Matrix(const Matrix &that) {
-  nRows = that.nRows;
-  nCols = that.nCols;
+  this->nRows = that.nRows;
+  this->nCols = that.nCols;
+  this->m = new double *[nRows];
+  for (int i = 0; i < nRows; ++i) m[i] = new double[nCols];
+
   for (int i = 0; i < this->nRows; ++i) {
     for (int j = 0; j < this->nCols; ++j) {
       that.m[i][j] = m[i][j];
@@ -66,7 +69,7 @@ Matrix::~Matrix() {
 }
 
 // obtem o numero de linhas
-int Matrix::getRows() const { return this->nCols; }
+int Matrix::getRows() const { return this->nRows; }
 
 // obtem o numero de colunas
 int Matrix::getCols() const { return this->nCols; }
@@ -115,8 +118,8 @@ void Matrix::zeros() {
 
 // faz com que a matriz torne-se uma matriz cujos elementos sao iguaia a 1
 void Matrix::ones() {
-  for (int i = 0; i <= this->nRows; i++) {
-    for (int j = 0; j <= this->nCols; j++) {
+  for (int i = 0; i < this->nRows; i++) {
+    for (int j = 0; j < this->nCols; j++) {
       this->m[i][j] = 1;
     }
   }
@@ -129,9 +132,9 @@ void Matrix::operator=(const Matrix &a) const{
 } 
 
 // altera o valor de uma posição
-// Matrix Matrix::operator() (int &a, int &b){
-//   m[a][b];
-// }
+ double& Matrix::operator() (int a, int b){
+    return m[a][b];
+ }
 
 // soma
 Matrix Matrix::operator+(const Matrix &a) const{
@@ -182,9 +185,15 @@ void Matrix::operator+=(const Matrix &a) const{
 } 
 
 // // igual a transposta
-// Matrix Matrix::operator~(){
-
-// } 
+Matrix Matrix::operator~()const{
+  Matrix temp(nCols, nRows);
+  for(int i = 0; i < nRows; i++){
+    for(int j = 0; j < nCols; j++){
+      temp.m[j][i] = m[i][j]; 
+    }
+  }
+  return temp;
+} 
 
 // multiplicação por uma constante
 void Matrix::operator*=(const int &b) const{
@@ -199,13 +208,14 @@ Matrix Matrix::operator*(const Matrix &a) const{
     Matrix temp(nCols, a.getRows());
     for(int i = 0; i < temp.getRows(); i++){
       double position = 0;
-      for(int j = 0; j < temp.getCols(); j++){
+      for(int j = 0; j < temp.getRows(); j++){
         for(int k = 0; k < a.getCols(); k++){
-          position += m[i][k]*a.m[k][j];
+          position += m[i][k] * a.m[k][j];
         }
         temp.m[i][j] = position;
       }
     }
+    return temp;
   }else{
      cout << "Nao eh possivel fazer a multiplicacao" << endl;
   }
@@ -232,8 +242,8 @@ void Matrix::operator*=(const Matrix &a) const{
 bool Matrix::operator==(const Matrix &a){
   if((nRows == a.getRows()) || (nCols != a.getCols())){
     int aux = 0;
-    for(int i = 0; i <= a.getRows(); i++){
-      for(int j = 0; j <= a.getCols(); j++){
+    for(int i = 0; i < a.getRows(); i++){
+      for(int j = 0; j < a.getCols(); j++){
         if(m[i][j] != a.m[i][j]){
           aux++;
           return false;
@@ -248,9 +258,9 @@ bool Matrix::operator==(const Matrix &a){
 bool Matrix::operator!=(const Matrix &b){
   if((nRows != b.getRows()) || (nCols != b.getCols())) return true;
   else{
-    for(int i = 0; i <= b.getRows(); i++){
+    for(int i = 0; i < b.getRows(); i++){
       int aux = 0;
-      for(int j = 0; j <=  b.getCols(); j++){
+      for(int j = 0; j <  b.getCols(); j++){
         if(m[i][j] != b.m[i][j]){
           aux++;
           return true;
@@ -273,6 +283,16 @@ ostream& operator << (ostream &out, Matrix &a){
 } 
 
 // leitura de dados para dentro da matriz Y
-// istream& operator>>(Matrix &l){
-  
-// }
+istream& operator>>(istream &in, Matrix &l){
+  cin >> l.nRows;
+  cin >> l.nCols;
+  l.m = new double *[l.nRows];
+  for (int i = 0; i < l.nRows; ++i) l.m[i] = new double[l.nCols];
+
+  for(int i = 0; i < l.nRows; i++){
+    for(int j = 0; j < l.nCols; j++){
+      cin >> l.m[i][j];
+    }
+  }
+  return in;
+}
