@@ -37,15 +37,16 @@ class Matrix {
         void ones();
 
         // funções de sobrecarga
-        Matrix operator =  (const Matrix &) const; // altera o valor de uma posição
+        void operator =  (const Matrix &) const; 
         Matrix operator +  (const Matrix &) const; // Soma
-        Matrix operator += (const Matrix &) const; // Soma
-        Matrix operator -= (const Matrix &) const; // Subtração
+        void operator += (const Matrix &) const; // Soma
+        void operator -= (const Matrix &) const; // Subtração
         Matrix operator -  (const Matrix &) const; // Subtração
         Matrix operator *  (const Matrix &) const; // multiplicação de matrizes
-        Matrix operator *= (const Matrix &) const; // multiplicação de matrizes
-        Matrix operator *= (const int&) const;     // multiplicação por uma constante
-        Matrix operator ~  () const;               // igual a transposta
+        void operator *= (const Matrix &) const; // multiplicação de matrizes
+        //Matrix operator () (int &, int &);         // altera o valor de uma posição
+        void operator *= (const int&) const;     // multiplicação por uma constante
+        //Matrix operator ~  (Matrix &) const;               // igual a transposta
         bool operator == (const Matrix &);         // verifica a igualdade entre duas matrizes
         bool operator != (const Matrix &);         // verifica a desigualdade entre duas matrizes
         friend ostream& operator << (ostream &, Matrix &); // impressão de matrizes

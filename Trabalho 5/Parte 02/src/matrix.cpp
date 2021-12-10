@@ -122,14 +122,16 @@ void Matrix::ones() {
   }
 }
 
-// altera o valor de uma posição
-Matrix Matrix::operator=(const Matrix &a) const{
-  Matrix temp(a.getRows(), a.getCols());
-  for(int i = 0; i < temp.getRows(); i++){
-    for(int j = 0; j < temp.getCols(); j++) temp.m[i][j] = a.m[i][j];
+void Matrix::operator=(const Matrix &a) const{
+  for(int i = 0; i < a.getRows(); i++){
+    for(int j = 0; j < a.getCols(); j++) m[i][j] = a.m[i][j];
   }
-  return temp;
 } 
+
+// altera o valor de uma posição
+// Matrix Matrix::operator() (int &a, int &b){
+//   m[a][b];
+// }
 
 // soma
 Matrix Matrix::operator+(const Matrix &a) const{
@@ -145,13 +147,11 @@ Matrix Matrix::operator+(const Matrix &a) const{
 }  
 
 // Subtração
-Matrix Matrix::operator-=(const Matrix &a) const {
-  Matrix temp(nRows, nCols);
-  if((temp.getRows() == a.getRows()) && (temp.getCols() == a.getCols())){
-    for(int i = 0; i < temp.getRows(); i++){
-      for(int j = 0; j < temp.getCols(); j++) temp.m[i][j] = m[i][j] - a.m[i][j];
+void Matrix::operator-=(const Matrix &a) const {
+  if((nRows == a.getRows()) && (nCols == a.getCols())){
+    for(int i = 0; i < nRows; i++){
+      for(int j = 0; j < nCols; j++) m[i][j] = m[i][j] - a.m[i][j];
     }
-    return temp;
   }else{
     cout << "Matrizes de tamanhos diferentes, nao eh possivel fazer a subtracao" << endl;
   }
@@ -171,30 +171,26 @@ Matrix Matrix::operator-(const Matrix &a) const{
 } 
 
 // Soma
-Matrix Matrix::operator+=(const Matrix &a) const{
-  Matrix temp(nRows, nCols);
-  if((temp.getRows() == a.getRows()) && (temp.getCols() == a.getCols())){
-    for(int i = 0; i < temp.getRows(); i++){
-      for(int j = 0; j < temp.getCols(); j++) temp.m[i][j] = m[i][j] + a.m[i][j];
+void Matrix::operator+=(const Matrix &a) const{
+  if((nRows == a.getRows()) && (nCols == a.getCols())){
+    for(int i = 0; i < nRows; i++){
+      for(int j = 0; j < nCols; j++) m[i][j] = m[i][j] + a.m[i][j];
     }
-    return temp;
   }else{
     cout << "Matrizes de tamanhos diferentes, nao eh possivel fazer a subtracao" << endl;
   }
 } 
 
-// igual a transposta
+// // igual a transposta
 // Matrix Matrix::operator~(){
 
 // } 
 
 // multiplicação por uma constante
-Matrix Matrix::operator*=(const int &b) const{
-  Matrix temp(nRows, nCols);
-  for(int i = 0; i < temp.getRows(); i++){
-    for(int j = 0; j < temp.getCols(); j++) temp.m[i][j] = m[i][j] * b;
+void Matrix::operator*=(const int &b) const{
+  for(int i = 0; i < nRows; i++){
+    for(int j = 0; j < nCols; j++) m[i][j] = m[i][j] * b;
   }
-  return temp;
 } 
 
 // multiplicação de matrizes
@@ -216,16 +212,15 @@ Matrix Matrix::operator*(const Matrix &a) const{
 } 
 
 // multiplicação de matrizes
-Matrix Matrix::operator*=(const Matrix &a) const{
+void Matrix::operator*=(const Matrix &a) const{
   if(nCols == a.getRows()){
-    Matrix temp(nCols, a.getRows());
-    for(int i = 0; i < temp.getRows(); i++){
+    for(int i = 0; i < nRows; i++){
       double position = 0;
-      for(int j = 0; j < temp.getCols(); j++){
+      for(int j = 0; j < nCols; j++){
         for(int k = 0; k < a.getCols(); k++){
           position += m[i][k]*a.m[k][j];
         }
-        temp.m[i][j] = position;
+        m[i][j] = position;
       }
     }
   }else{
