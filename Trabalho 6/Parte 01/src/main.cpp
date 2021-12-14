@@ -2,6 +2,7 @@
 #include <iostream>
 using namespace std;
 #include "Erro.h"
+#include "Fibonacci.h"
 #include "List.h"
 
 void clearscreen() {
@@ -42,7 +43,7 @@ int main(int argc, char *argv[]) {
     cout << "A.erase(6)" << endl;
     cout << "-> Lista A " << A << endl;
   } catch (Erro &err) {
-      cout << "Exceção ocorrida: " << err.out() << endl;
+    cout << "Exceção ocorrida: " << err.out() << endl;
   }
 
   // retorna o tamanho da lista
@@ -50,6 +51,26 @@ int main(int argc, char *argv[]) {
   tam = A.size();
   cout << "tam = A.size" << endl;
   cout << "-> tamanho da Lista A = " << tam << endl << endl;
+
+  int ni = 2;
+  int respi = Fibonacci<int>::calculateFibonacci(ni);
+  cout << "Fibonacci int 2: " << respi << endl; 
+  cout << typeid(respi).name() << endl;
+
+  long nl = 3;
+  long respl = Fibonacci<long>::calculateFibonacci(nl);
+  cout << "Fibonacci int 3: " << respl << endl; 
+  cout << typeid(respl).name() << endl;
+
+  float nf = 4;
+  float respf = Fibonacci<float>::calculateFibonacci(nf);
+  cout << "Fibonacci float 4: " << respf << endl; 
+  cout << typeid(respf).name() << endl;
+
+  double nd = 5;
+  double respd = Fibonacci<double>::calculateFibonacci(nd);
+  cout << "Fibonacci double 5: " << respd << endl; 
+  cout << typeid(respd).name() << endl;
 
   cout << "\nPressione qualquer tecla para continuar...";
   getchar();
