@@ -12,7 +12,7 @@ class Erro {
 
  public:
   Erro(const string &tipoErro_) : tipoErro(tipoErro_){};
-  void out() { cout << tipoErro; }
+  string out() { return tipoErro; }
 };
 
 #endif

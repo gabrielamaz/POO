@@ -1,6 +1,7 @@
 #ifndef LIST_H_
 #define LIST_H_
 #include <iostream>
+#include <Erro.h> 
 using namespace std;
 
 /* essas declaracoes sao necessarias */
@@ -199,7 +200,7 @@ Node<T> *List<T>::erase(Node<T> *it) {
       return temp2;
     }
   } else
-    cerr << "Impossivel remover o elemento da Lista." << endl;
+    throw Erro("Impossivel remover o elemento da Lista.");
 }
 
 // remove os elementos de valor igual a T existentes na lista O(n)
@@ -215,7 +216,7 @@ void List<T>::erase(const T &value) {
         it = it->next;
     }
   } else
-    cerr << "Lista Vazia! Impossivel remover o elemento da Lista." << endl;
+    throw Erro("Lista Vazia! Impossivel remover o elemento da Lista.");
 }
 
 // sobrecarga do operador de atribuição
