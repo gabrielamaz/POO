@@ -6,10 +6,20 @@
 using namespace std;
 
 template <class T>
+class Matrix;
+
+template <class T>
+ostream &operator<<(ostream &, Matrix<T> &);
+
+template <class T>
+istream &operator >>(istream &, Matrix<T> &);
+
+
+template <class T>
 class Matrix {
     private:
 
-        double** m; // m é um array 2D a ser implementado como um pointer de pointers
+        T** m; // m é um array 2D a ser implementado como um pointer de pointers
         int nRows;  // numero de linhas
         int nCols;  // numero de colunas
 
@@ -50,8 +60,8 @@ class Matrix {
         T& operator () (int a, int b);      // altera o valor de uma posição
         bool operator == (const Matrix<T> &);       // verifica a igualdade entre duas matrizes
         bool operator != (const Matrix<T> &);       // verifica a desigualdade entre duas matrizes
-        friend ostream& operator << (ostream &, Matrix &); // impressão de matrizes
-        friend istream& operator >> (istream &, Matrix &); // leitura de dados para dentro da matriz Y
+        friend ostream& operator <<<> (ostream &, Matrix &); // impressão de matrizes
+        friend istream& operator >><> (istream &, Matrix &); // leitura de dados para dentro da matriz Y
 };
 
 // construtor default - cria uma matriz vazia com nRows = nCols = 0
@@ -198,8 +208,8 @@ void Matrix<T>::ones() {
 
 template <class T>
 void Matrix<T>::operator=(const Matrix<T> &a) const{
-  for(int i = 0; i < a.getRows(); i++){
-    for(int j = 0; j < a.getCols(); j++) m[i][j] = a.m[i][j];
+  for(int i = 0; i < a.rows(); i++){
+    for(int j = 0; j < a.cols(); j++) m[i][j] = a.m[i][j];
   }
 }
 
@@ -214,9 +224,9 @@ template <class T>
  template <class T>
 Matrix<T> Matrix<T>::operator+(const Matrix<T> &a) const{
   Matrix temp(nRows, nCols);
-  if((temp.getRows() == a.getRows()) && (temp.getCols() == a.getCols())){
-    for(int i = 0; i < temp.getRows(); i++){
-      for(int j = 0; j < temp.getCols(); j++) temp.m[i][j] = m[i][j] + a.m[i][j];
+  if((temp.rows() == a.rows()) && (temp.cols() == a.cols())){
+    for(int i = 0; i < temp.rows(); i++){
+      for(int j = 0; j < temp.cols(); j++) temp.m[i][j] = m[i][j] + a.m[i][j];
     }
     return temp;
   }else{
@@ -227,7 +237,7 @@ Matrix<T> Matrix<T>::operator+(const Matrix<T> &a) const{
 // Subtração
 template <class T>
 void Matrix<T>::operator-=(const Matrix<T> &a) const {
-  if((nRows == a.getRows()) && (nCols == a.getCols())){
+  if((nRows == a.rows()) && (nCols == a.cols())){
     for(int i = 0; i < nRows; i++){
       for(int j = 0; j < nCols; j++) m[i][j] = m[i][j] - a.m[i][j];
     }
@@ -241,9 +251,9 @@ void Matrix<T>::operator-=(const Matrix<T> &a) const {
 template <class T>
 Matrix<T> Matrix<T>::operator-(const Matrix<T> &a) const{
   Matrix<T> temp(nRows, nCols);
-  if((temp.getRows() == a.getRows()) && (temp.getCols() == a.getCols())){
-    for(int i = 0; i < temp.getRows(); i++){
-      for(int j = 0; j < temp.getCols(); j++) temp.m[i][j] = m[i][j] - a.m[i][j];
+  if((temp.rows() == a.rows()) && (temp.cols() == a.cols())){
+    for(int i = 0; i < temp.rows(); i++){
+      for(int j = 0; j < temp.cols(); j++) temp.m[i][j] = m[i][j] - a.m[i][j];
     }
     return temp;
   }else{
@@ -254,7 +264,7 @@ Matrix<T> Matrix<T>::operator-(const Matrix<T> &a) const{
 // Soma
 template <class T>
 void Matrix<T>::operator+=(const Matrix<T> &a) const{
-  if((nRows == a.getRows()) && (nCols == a.getCols())){
+  if((nRows == a.rows()) && (nCols == a.cols())){
     for(int i = 0; i < nRows; i++){
       for(int j = 0; j < nCols; j++) m[i][j] = m[i][j] + a.m[i][j];
     }
@@ -286,12 +296,12 @@ void Matrix<T>::operator*=(const int &b) const{
 // multiplicação de matrizes
 template <class T>
 Matrix<T> Matrix<T>::operator*(const Matrix<T> &a) const{
-  if(nCols == a.getRows()){
-    Matrix<T> temp(nCols, a.getRows());
-    for(int i = 0; i < temp.getRows(); i++){
-      double position = 0;
-      for(int j = 0; j < temp.getRows(); j++){
-        for(int k = 0; k < a.getCols(); k++){
+  if(nCols == a.rows()){
+    Matrix<T> temp(nCols, a.rows());
+    for(int i = 0; i < temp.rows(); i++){
+      T position = 0;
+      for(int j = 0; j < temp.rows(); j++){
+        for(int k = 0; k < a.cols(); k++){
           position += m[i][k] * a.m[k][j];
         }
         temp.m[i][j] = position;
@@ -306,11 +316,11 @@ Matrix<T> Matrix<T>::operator*(const Matrix<T> &a) const{
 // multiplicação de matrizes
 template <class T>
 void Matrix<T>::operator*=(const Matrix<T> &a) const{
-  if(nCols == a.getRows()){
+  if(nCols == a.rows()){
     for(int i = 0; i < nRows; i++){
-      double position = 0;
+      T position = 0;
       for(int j = 0; j < nCols; j++){
-        for(int k = 0; k < a.getCols(); k++){
+        for(int k = 0; k < a.cols(); k++){
           position += m[i][k]*a.m[k][j];
         }
         m[i][j] = position;
@@ -324,10 +334,10 @@ void Matrix<T>::operator*=(const Matrix<T> &a) const{
 // verifica a desigualdade entre duas matrizes
 template <class T>
 bool Matrix<T>::operator==(const Matrix<T> &a){
-  if((nRows == a.getRows()) || (nCols != a.getCols())){
+  if((nRows == a.rows()) || (nCols != a.cols())){
     int aux = 0;
-    for(int i = 0; i < a.getRows(); i++){
-      for(int j = 0; j < a.getCols(); j++){
+    for(int i = 0; i < a.rows(); i++){
+      for(int j = 0; j < a.cols(); j++){
         if(m[i][j] != a.m[i][j]){
           aux++;
           return false;
@@ -342,11 +352,11 @@ bool Matrix<T>::operator==(const Matrix<T> &a){
 // verifica a desigualdade entre duas matrizes
 template <class T>
 bool Matrix<T>::operator!=(const Matrix<T> &b){
-  if((nRows != b.getRows()) || (nCols != b.getCols())) return true;
+  if((nRows != b.rows()) || (nCols != b.cols())) return true;
   else{
-    for(int i = 0; i < b.getRows(); i++){
+    for(int i = 0; i < b.rows(); i++){
       int aux = 0;
-      for(int j = 0; j <  b.getCols(); j++){
+      for(int j = 0; j <  b.cols(); j++){
         if(m[i][j] != b.m[i][j]){
           aux++;
           return true;
@@ -360,8 +370,8 @@ bool Matrix<T>::operator!=(const Matrix<T> &b){
 // impressão de matrizes
 template <class T>
 ostream& operator << (ostream &out, Matrix<T> &a){
-  for(int i = 0; i < a.getRows(); i++){
-    for(int j = 0; j < a.getCols(); j++){
+  for(int i = 0; i < a.rows(); i++){
+    for(int j = 0; j < a.cols(); j++){
       cout << a.m[i][j] << " ";
     }
     cout << endl;
