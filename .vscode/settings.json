@@ -8,6 +8,12 @@
         "system_error": "cpp",
         "utility": "cpp",
         "xtr1common": "cpp",
-        "xutility": "cpp"
+        "xutility": "cpp",
+        "algorithm": "cpp",
+        "bit": "cpp",
+        "memory": "cpp",
+        "type_traits": "cpp",
+        "vector": "cpp",
+        "xlocnum": "cpp"
     }
 }

@@ -4,6 +4,7 @@ using namespace std;
 #include "Erro.h"
 #include "Fibonacci.h"
 #include "List.h"
+#include <typeinfo>
 
 void clearscreen() {
   if (system("clear")) system("cls");

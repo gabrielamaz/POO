@@ -120,7 +120,7 @@ Matrix<T>::Matrix(const Matrix<T> &that) {
 
   for (int i = 0; i < this->nRows; ++i) {
     for (int j = 0; j < this->nCols; ++j) {
-      that.m[i][j] = m[i][j];
+      m[i][j] = that.m[i][j];
     }
   }
 }
@@ -216,12 +216,12 @@ void Matrix<T>::operator=(const Matrix<T> &a) const{
 
 // altera o valor de uma posição
 template <class T>
- T& Matrix<T>::operator() (int a, int b){
-    return m[a][b];
- }
+T& Matrix<T>::operator() (int a, int b){
+  return m[a-1][b-1];
+}
 
- // soma
- template <class T>
+// soma
+template <class T>
 Matrix<T> Matrix<T>::operator+(const Matrix<T> &a) const{
   Matrix temp(nRows, nCols);
   if((temp.rows() == a.rows()) && (temp.cols() == a.cols())){
@@ -395,5 +395,3 @@ istream& operator>>(istream &in, Matrix<T> &l){
   }
   return in;
 }
-
-

@@ -1,5 +1,8 @@
 #include <iostream>
+#include "Box.hpp"
 
 int main() {
-    std::cout << "Hello Easy C++ project!" << std::endl;
+    Box *A = new Box();
+
+    return 0;
 }

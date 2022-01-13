@@ -66,5 +66,9 @@ int main(){
     cout << "-> Sobrecarga do Operador ( )" << endl;
     cout << "m6(1, 1) = 7; m6(1, 3) = -3; m6(2, 1) = 3.6; m6(2, 2) = -2; m6(3, 1) = 4;" << endl;
     cout << "m6 = " << m6 << endl;
+
+    cout << "\nPressione qualquer tecla para finalizar...";
+    getchar();
+    clearscreen();
     
 }
