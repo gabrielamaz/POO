@@ -7,11 +7,22 @@
 
 using namespace std;
 class Conhecido : public Pessoa {
-  public:
-    Conhecido() : email("indefinido"), Pessoa() {};
+ public:
+  Conhecido() : email("indefinido"), Pessoa(){};
 
-  private:
-    string email;
+  void imprimeInformacoes() {
+    cout << "Nome: " << nome << endl;
+    cout << "Idade: " << idade << endl;
+  }
+  void editaInformacoes() override {
+    cout << "Digite as informações do seu Conhecido: " << endl;
+    Pessoa::editaInformacoes();
+    cout << "Digite o e-mail:" << endl;
+    cin >> email;
+  };
+
+ private:
+  string email;
 };
 
 #endif

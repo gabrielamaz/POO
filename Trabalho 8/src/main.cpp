@@ -1,5 +1,11 @@
 #include <iostream>
 
+#include "Agenda.hpp"
+#include "Amigo.hpp"
+
 int main() {
-    std::cout << "Hello Easy C++ project!" << std::endl;
+    Agenda agenda(3);
+    
+    agenda.addInformacoes();
+
 }

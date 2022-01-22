@@ -16,6 +16,19 @@ class Agenda {
       }
     };
 
+    ~Agenda() {
+      for(auto const& contato : contatos) {
+        delete contato;
+      }
+    };
+
+    void addInformacoes() {
+      for(auto const& contato : contatos) {
+        contato->imprimeInformacoes();
+        contato->editaInformacoes();
+      }
+    };
+
  private:
   int numeroAmigos;
   int numeroConhecidos;
