@@ -9,40 +9,25 @@
 
 class Agenda {
   public:
-    Agenda(int numeroContatos) {
-      contatos.reserve(numeroContatos);
-      for(int i = 0; i < numeroContatos; i++) {
-        contatos.push_back(criaPessoaAleatoria());
-      }
-    };
+    Agenda(int numeroContatos);
 
-    ~Agenda() {
-      for(auto const& contato : contatos) {
-        delete contato;
-      }
-    };
+    ~Agenda();
 
-    void addInformacoes() {
-      for(auto const& contato : contatos) {
-        contato->imprimeInformacoes();
-        contato->editaInformacoes();
-      }
-    };
+    int getNumeroAmigos() {return numeroAmigos;};
+    int getNumeroConhecidos() {return numeroConhecidos;};
+
+    void addInformacoes();
+    void imprimeAniversarios();
+    void imprimeEmails();
+
+    
 
  private:
   int numeroAmigos;
   int numeroConhecidos;
   vector<Pessoa*> contatos;
 
-  Pessoa* criaPessoaAleatoria() {
-    int tipo;
-    tipo = rand() % 2 + 1;
-    if (tipo == 1){
-      return new Amigo();
-    } else {
-      return new Conhecido();
-    }
-  };
+  Pessoa* criaPessoaAleatoria() ;
 };
 
 #endif

@@ -4,8 +4,14 @@
 #include "Amigo.hpp"
 
 int main() {
-    Agenda agenda(3);
-    
-    agenda.addInformacoes();
+  int numContatos;
+  cout << "Digite o número de contatos para a agenda: ";
+  cin >> numContatos;
 
+  Agenda* agenda = new Agenda(numContatos);
+
+  agenda->addInformacoes();
+  agenda->imprimeAniversarios();
+  agenda->imprimeEmails();
+  delete agenda;
 }

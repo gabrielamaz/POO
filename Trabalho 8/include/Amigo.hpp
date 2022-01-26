@@ -9,18 +9,10 @@
 using namespace std;
 class Amigo : public Pessoa {
  public:
-  Amigo() : Pessoa(){};
-  void editaInformacoes() override {
-    cout << "Digite as informações do seu Amigo: " << endl;
-    Pessoa::editaInformacoes();
-    cout << "Digite a data de aniversário: " << endl;
-    cin >> dataAniversario;
-  };
-  void imprimeInformacoes() {
-    Pessoa::imprimeInformacoes();
-    cout << "Nome: " << nome << endl;
-    cout << "Idade: " << idade << endl;
-  }
+  Amigo() : Pessoa(), dataAniversario("indefinida") {};
+  string getAniversario() { return dataAniversario; };
+  void editaInformacoes();
+  void imprimeInformacoes();
 
  private:
   string dataAniversario;

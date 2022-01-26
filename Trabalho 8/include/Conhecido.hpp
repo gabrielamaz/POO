@@ -8,11 +8,10 @@
 using namespace std;
 class Conhecido : public Pessoa {
  public:
-  Conhecido() : email("indefinido"), Pessoa(){};
+  Conhecido() : Pessoa(), email("indefinido"){};
 
   void imprimeInformacoes() {
-    cout << "Nome: " << nome << endl;
-    cout << "Idade: " << idade << endl;
+    cout << "Email: " << email << endl;
   }
   void editaInformacoes() override {
     cout << "Digite as informações do seu Conhecido: " << endl;

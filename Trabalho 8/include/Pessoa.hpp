@@ -13,17 +13,11 @@ class Pessoa {
     idade = idade;
   };
 
-  void imprimeInformacoes() {
-    cout << "Nome: " << nome << endl;
-    cout << "Idade: " << idade << endl;
-  }
+  virtual ~Pessoa();
 
-  virtual void editaInformacoes() {
-    cout << "Digite o nome do seu Contato: " << endl;
-    cin >> nome;
-    cout << "Digite a idade do seu contato: " << endl;
-    cin >> idade;
-  };
+  virtual void imprimeInformacoes()  = 0;
+
+  virtual void editaInformacoes();
 
  protected:
   string nome;
