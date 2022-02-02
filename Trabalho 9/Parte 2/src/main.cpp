@@ -33,7 +33,7 @@ class Funcao
     virtual double func(double input) = 0;
 
     // destrutor
-    //virtual ~Funcao(){}
+    virtual ~Funcao(){}
 };
 
 class Quadratica : public Funcao {
@@ -52,6 +52,8 @@ class Quadratica : public Funcao {
             this->_c = c;
         }
 
+        ~Quadratica() {}
+
         virtual double func(double input){
             output = pow(input, 2) + 2*input + 4;
             return output;
@@ -66,6 +68,8 @@ class Senoide : public Funcao {
     public:
 
         Senoide(){ }
+
+        ~Senoide() {}
 
         virtual double func(double input){
             output = sin(input)/input;
@@ -84,6 +88,8 @@ class Linear : public Funcao {
             this->_a = a;
             this->_b = b;
         }
+
+        ~Linear() {};
 
         virtual double func(double input){
             output = input + 4;
@@ -111,7 +117,7 @@ int main()
 
     for (int i=0; i<3; i++)
     {
-        resultado = f[i]->getIntegral(1,4,1000);
+        resultado = f[i]->getIntegral(1,4,10);
         cout << "Integral da Funcao (" << i+1 << "): " << resultado;
         cout << endl;
     }
