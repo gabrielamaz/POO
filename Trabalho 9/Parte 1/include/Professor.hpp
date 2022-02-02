@@ -13,7 +13,7 @@ class Professor {
   Professor(string n) {nome = n;};
   string getName() const {return nome;};
   virtual double getSalario() = 0;
-  virtual ~Professor();
+  virtual ~Professor() {};
 };
 
 #endif

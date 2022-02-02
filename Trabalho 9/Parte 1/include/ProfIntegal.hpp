@@ -15,8 +15,8 @@ class ProfIntegral : public Professor {
   ProfIntegral(string nome, double sm) : Professor(nome) {
     salarioMensal = sm;
   };
-  double getSalario() override { return salarioMensal; };
-  virtual ~ProfIntegral() {}
+  double getSalario() { return salarioMensal; };
+  virtual ~ProfIntegral() {};
 };
 
 #endif

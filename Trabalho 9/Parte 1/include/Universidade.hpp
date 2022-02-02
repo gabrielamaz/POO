@@ -8,11 +8,11 @@
 using namespace std;
 class Universidade {
   private:
-    vector<Professor> professores;
+    vector<Professor*> professores;
   public:
     Universidade() {};
     ~Universidade() {};
-    void addProfessor(Professor const & prof);
+    void addProfessor(Professor* const & prof);
     double totalPago();
 };
 

@@ -17,7 +17,7 @@ class ProfHorista : public Professor {
     valorHora = vh;
   };
   double getSalario() override { return nrHorasTrabalhadas * valorHora; };
-  virtual ~ProfHorista();
+  virtual ~ProfHorista() {};
 };
 
 #endif
