@@ -20,11 +20,11 @@ class Funcao
 
         //calculo do somatorio de f(x)
         for(int i = 1; i <= intervalos-1; i++){
-            somatorio += func(i);
+            somatorio += func(limiteInferior + i*h);
         }
 
         //aplicacao da equação
-        resultado = (h*((func(limiteInferior) - func(limiteSuperior))/2)) + somatorio;
+        resultado = (h*((func(limiteInferior) + func(limiteSuperior))/2)) + h*somatorio;
 
         return resultado;
     }
@@ -117,7 +117,7 @@ int main()
 
     for (int i=0; i<3; i++)
     {
-        resultado = f[i]->getIntegral(1,4,10);
+        resultado = f[i]->getIntegral(1,4,1000);
         cout << "Integral da Funcao (" << i+1 << "): " << resultado;
         cout << endl;
     }
