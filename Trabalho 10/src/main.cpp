@@ -39,6 +39,7 @@ int main() {
         cin >> senha;
         
         ContaBancaria *contaCorrente = new ContaCorrente(senha, conta, 0);
+        Contas.push_back(*contaCorrente);
     }
 
     for(cont = 0; cont < poupanca; cont++){
@@ -52,6 +53,7 @@ int main() {
         cin >> senha;
 
         ContaBancaria *contaPoupanca = new ContaPoupanca(senha, conta, 0, 0.1);
+        Contas.push_back(*contaPoupanca);
     }
 
     cout << "A taxa de rendimento da conta poupanca eh de 10%." << endl;
@@ -152,7 +154,7 @@ int main() {
                     i->deposita(valor);
                 }
             }
-            
+
             break;
         case 3:
 
@@ -175,7 +177,6 @@ int main() {
         case 5:
             break;
         }
-        break;
     }
 
     //TODO: quantidade de transacoes e taxas de rendimentos

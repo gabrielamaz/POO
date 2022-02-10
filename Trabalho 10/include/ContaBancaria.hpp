@@ -25,7 +25,6 @@ class ContaBancaria {
 
   void alterarSenha(){
     int senha = -1;
-    //std::cout << "Sua senha atual eh: " << getSenha() << std::endl;
     while((senha%_senha) != 0){
       std::cout << "Digite a senha atual: " << std::endl;
       std::cin >> senha;
