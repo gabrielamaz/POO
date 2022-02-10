@@ -19,9 +19,9 @@ class ContaBancaria {
   void setNumeroConta(int numeroConta) { _numeroConta = numeroConta; }
   double getSaldo() { return _saldo; }
   void setSaldo(double saldo) { _saldo = saldo; }
-  virtual void saca(double valor) {}
-  virtual void deposita(double valor) {}
-  virtual void tiraExtrato() {}
+  virtual void saca(double valor) = 0;
+  virtual void deposita(double valor) = 0;
+  virtual void tiraExtrato() = 0;
 
   void alterarSenha(){
     int senha = -1;

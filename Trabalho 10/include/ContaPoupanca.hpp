@@ -25,7 +25,7 @@ class ContaPoupanca : public ContaBancaria {
     }
     }
 
-  virtual void depositar(double valor){
+  virtual void deposita(double valor) override {
     int saldoAtual = getSaldo();
     saldoAtual += valor;
     setSaldo(saldoAtual);
